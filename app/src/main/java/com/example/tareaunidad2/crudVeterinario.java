@@ -35,13 +35,11 @@ public class crudVeterinario extends AppCompatActivity {
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                //Dialodo para ver vista previa de registro
             }
         });
         insertar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Dialogo para agregar
                 Dialog dialog = new Dialog(crudVeterinario.this);
                 dialog.setTitle("Nuevo Registro");
                 dialog.setCancelable(true);

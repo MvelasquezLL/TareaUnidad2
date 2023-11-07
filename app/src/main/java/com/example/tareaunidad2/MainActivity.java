@@ -7,11 +7,18 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
 
     daoUsuario daoUsuario;
+
+    ProgressBar pb1;
+    int counter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         Button btnRegistrar = findViewById(R.id.btn_ragistrar);
         EditText correo = findViewById(R.id.txtCorreo);
         EditText pass = findViewById(R.id.txtPass);
+        pb1 = findViewById(R.id.progressBar);
 
         btnIngresar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,8 +48,22 @@ public class MainActivity extends AppCompatActivity {
                     }else if (!contra.equals(passR)){
                         Toast.makeText(getApplication(),"Usuario u contraseña incorrectos",Toast.LENGTH_SHORT).show();
                     }else{
-                        Intent vista = new Intent(MainActivity.this, Menu.class);
-                        startActivity(vista);
+                        pb1.setVisibility(View.VISIBLE);
+                        Timer timer = new Timer();
+                        TimerTask timerTask = new TimerTask() {
+
+                            @Override
+                            public void run() {
+                                counter++;
+                                pb1.setProgress(counter);
+                                if(counter==100){
+                                    timer.cancel();
+                                    Intent vista = new Intent(MainActivity.this, Menu.class);
+                                    startActivity(vista);
+                                }
+                            }
+                        };
+                        timer.schedule(timerTask, 50,50);
                     }
                 }catch (Exception e){
                     Toast.makeText(getApplication(), "ERROR", Toast.LENGTH_SHORT).show();

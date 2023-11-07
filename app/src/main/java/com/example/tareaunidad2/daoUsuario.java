@@ -8,13 +8,12 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 
 public class daoUsuario {
-    SQLiteDatabase bd;//Instancia de la base de datos
-    ArrayList<Usuario> lista = new ArrayList<Usuario>();//Almacena una lista de  objetos de tipo contacto
-    Usuario c;//Instancia de la clase contacto, utilizada para operaciones de busqueda
-    Context ct;//contexto de la aplicacion
-    String nombreBD= "BDtarea";//nombre de la Base de datos
+    SQLiteDatabase bd;
+    ArrayList<Usuario> lista = new ArrayList<Usuario>();
+    Usuario c;
+    Context ct;
+    String nombreBD= "BDtarea";
 
-    //cadena de sentencia sql que crea la tabla contacto si no existe, define las columnas de las tablas
     String tabla = "create table if not exists usuario(id integer primary key autoincrement, correo text, password text)";
 
 
